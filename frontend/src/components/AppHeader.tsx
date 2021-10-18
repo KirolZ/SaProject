@@ -33,6 +33,7 @@ export default function ButtonAppBar() {
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
           ระบบย่อย: ระบบซักประวัติเบื้องต้น
+          
           </Typography>
         </Toolbar>
       </AppBar>
