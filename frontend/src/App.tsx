@@ -9,7 +9,7 @@ function App() {
   const [token, setToken] = React.useState<String>("");
 
   useEffect(() => {
-    const getToken = localStorage.getItem("uid");
+    const getToken = localStorage.getItem("token");
     if (getToken) {
       setToken(getToken);
     }

@@ -114,33 +114,36 @@ function Body() {
         }
 
         //Nurse
-        const [Nurse, setNurse] = useState<NurseInterface>();
-          const getNurse = async() => {
-          const uid = Number(localStorage.getItem("uid"));
-          const apiUrl = `http://localhost:8080/api/GetNurse/${uid}`;
-          const requestOptions = {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-              "Content-Type": "application/json",
-            },
-          }
+        const Nurse: NurseInterface = (JSON.parse(localStorage.getItem("Nurse")|| ""))
+        // const [Nurse, setNurse] = useState<NurseInterface>();
+        //   const getNurse = async() => {
+        //   const uid = Number(localStorage.getItem("uid"));
+        //   const apiUrl = `http://localhost:8080/api/GetNurse/${uid}`;
+        //   const requestOptions = {
+        //     method: "GET",
+        //     headers: {
+        //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+        //       "Content-Type": "application/json",
+        //     },
+        //   }
 
-          fetch(apiUrl, requestOptions)
-            .then((response) => response.json())
-            .then((res) => {
-              console.log(res.data);
-              if(res.data) {
-                setNurse(res.data)
-              } else {
-                console.log("else")
-              }
-            });
-        }
+        //   fetch(apiUrl, requestOptions)
+        //     .then((response) => response.json())
+        //     .then((res) => {
+        //       console.log(res.data);
+        //       if(res.data) {
+        //         setNurse(res.data)
+        //       } else {
+        //         console.log("else")
+        //       }
+        //     });
+        // }
+
+
         useEffect(() => {
             getMedicalRecord();
             getDisease();
-            getNurse();
+            
           }, []);
 
 
@@ -251,7 +254,7 @@ function Body() {
                             defaultValue = {0}
                             disabled
                         >
-                              <MenuItem value={0} >{Nurse?.NurseName}</MenuItem>
+                              <MenuItem value={0} >{Nurse.NurseName}</MenuItem>
                         </Select>
                         <p></p>
                   </Grid>

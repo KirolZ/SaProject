@@ -56,7 +56,7 @@ function SignIn() {
         if (res.data) {
           setSuccess(true);
           localStorage.setItem("token", res.data.token);
-          localStorage.setItem("uid", res.data.id);
+          localStorage.setItem("Nurse", JSON.stringify(res.data.nurses));
           window.location.reload()
         } else {
           setError(true);
@@ -101,7 +101,7 @@ function SignIn() {
           Sign in
 
         </Typography>
-        *username:chanwit@gmail.com, password:123456*
+        ระบบย่อย: ระบบซักประวัติเบื้องต้น
         <form className={classes.form} noValidate>
           <TextField
             variant="outlined"
