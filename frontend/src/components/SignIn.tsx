@@ -108,12 +108,12 @@ function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="NurseEmail"
+            id="Email"
             label="Email Address"
-            name="NurseEmail"
-            autoComplete="NurseEmail"
+            name="Email"
+            autoComplete="Email"
             autoFocus
-            value={signin.NurseEmail || ""}
+            value={signin.Email || ""}
             onChange={handleInputChange}
           />
           <TextField
@@ -121,12 +121,12 @@ function SignIn() {
             margin="normal"
             required
             fullWidth
-            name="NursePass"
+            name="Pass"
             label="Password"
             type="password"
-            id="NursePass"
+            id="Pass"
             autoComplete="current-password"
-            value={signin.NursePass || ""}
+            value={signin.Pass || ""}
             onChange={handleInputChange}
           />
           <Button

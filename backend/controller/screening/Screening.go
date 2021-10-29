@@ -48,7 +48,7 @@ func CreateScreening(c *gin.Context) {
 		return
 	}
 	// 12: สร้าง WatchVideo
-	wv := entity.Screening{
+	Sr := entity.Screening{
 
 		SaveTime: Screening.SaveTime,
 
@@ -65,10 +65,10 @@ func CreateScreening(c *gin.Context) {
 	}
 
 	// 13: บันทึก
-	if err := entity.DB().Create(&wv).Error; err != nil {
+	if err := entity.DB().Create(&Sr).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"data": wv})
+	c.JSON(http.StatusOK, gin.H{"data": Sr})
 
 }

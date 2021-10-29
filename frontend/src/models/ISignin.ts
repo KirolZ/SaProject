@@ -1,4 +1,4 @@
 export interface SigninInterface {
-    NurseEmail: string,
-    NursePass: string,
+    Email: string,
+    Pass: string,
   }

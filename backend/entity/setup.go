@@ -61,17 +61,17 @@ func SetupDatabase() {
 
 	password1, err := bcrypt.GenerateFromPassword([]byte("123456"), 14)
 	Nurse1 := Nurse{
-		NurseName:  "nueng",
-		NurseEmail: "nueng@gmail.com",
-		NursePass:  string(password1),
+		Name:  "nueng",
+		Email: "nueng@gmail.com",
+		Pass:  string(password1),
 	}
 	db.Model(&Nurse{}).Create(&Nurse1)
 
 	password2, err := bcrypt.GenerateFromPassword([]byte("123456"), 14)
 	Nurse2 := Nurse{
-		NurseName:  "pakapon",
-		NurseEmail: "pakapon@gmail.com",
-		NursePass:  string(password2),
+		Name:  "pakapon",
+		Email: "pakapon@gmail.com",
+		Pass:  string(password2),
 	}
 	db.Model(&Nurse{}).Create(&Nurse2)
 

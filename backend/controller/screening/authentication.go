@@ -11,8 +11,8 @@ import (
 
 // LoginPayload login body
 type LoginPayload struct {
-	Email    string `json:"NurseEmail"`
-	Password string `json:"NursePass"`
+	Email    string `json:"Email"`
+	Password string `json:"Pass"`
 }
 
 // LoginResponse token response
@@ -31,13 +31,13 @@ func Login(c *gin.Context) {
 		return
 	}
 	// ค้นหา user ด้วย email ที่ผู้ใช้กรอกเข้ามา
-	if err := entity.DB().Raw("SELECT * FROM nurses WHERE nurse_email = ?", payload.Email).Scan(&Nurse).Error; err != nil {
+	if err := entity.DB().Raw("SELECT * FROM nurses WHERE email = ?", payload.Email).Scan(&Nurse).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	// ตรวจสอบรหัสผ่าน
-	err := bcrypt.CompareHashAndPassword([]byte(Nurse.NursePass), []byte(payload.Password))
+	err := bcrypt.CompareHashAndPassword([]byte(Nurse.Pass), []byte(payload.Password))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid user credentials"})
 		return
@@ -54,7 +54,7 @@ func Login(c *gin.Context) {
 		ExpirationHours: 24,
 	}
 
-	signedToken, err := jwtWrapper.GenerateToken(Nurse.NurseEmail)
+	signedToken, err := jwtWrapper.GenerateToken(Nurse.Email)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "error signing token"})
 		return

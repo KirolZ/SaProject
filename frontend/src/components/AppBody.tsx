@@ -180,7 +180,7 @@ function Body() {
                 }
             });
           }
-          console.log(Screening)
+          console.log(Nurse)
 
     return (
 
@@ -248,13 +248,13 @@ function Body() {
                 <Grid item xs={6}>
                         <p>Nurse</p>
                         <Select
-                            value={Nurse?.ID}
+                            
                             style={{ width: 200 }}
                             variant = "outlined"
                             defaultValue = {0}
                             disabled
                         >
-                              <MenuItem value={0} >{Nurse.NurseName}</MenuItem>
+                              <MenuItem value={0} >{Nurse.Name}</MenuItem>
                         </Select>
                         <p></p>
                   </Grid>

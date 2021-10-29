@@ -135,7 +135,7 @@ function PreloadScreenings() {
                   <TableCell align="center">{item.Temperature}</TableCell>
                   <TableCell align="center">{item.PulseRate}</TableCell>
                   <TableCell align="center">{item.RespirationRate}</TableCell>
-                  <TableCell align="center">{item.Nurse.NurseName}</TableCell>
+                  <TableCell align="center">{item.Nurse.Name}</TableCell>
                   <TableCell align="center">{moment(item.SeveTime).format("YYYY-MM-DDTHH:mm")}</TableCell>
                   
                 </TableRow>

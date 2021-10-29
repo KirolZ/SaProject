@@ -9,9 +9,9 @@ import (
 type Nurse struct {
 	gorm.Model
 
-	NurseName  string
-	NurseEmail string `gorm:"uniqueIndex"`
-	NursePass  string
+	Name  string
+	Email string `gorm:"uniqueIndex"`
+	Pass  string
 
 	Screenings []Screening `gorm:"foreignKey:NurseID"`
 }

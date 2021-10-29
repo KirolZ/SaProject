@@ -22,9 +22,9 @@ export interface ScreeningInterface {
 export interface NurseInterface {
 
     ID: string, 
-    NurseName : string,
-    NurseEmail : string,
-    NursePass: string,
+    Name : string,
+    Email : string,
+    Pass: string,
 }
 
 export interface MedicalRecordInterface {
