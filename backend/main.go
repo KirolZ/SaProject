@@ -3,7 +3,9 @@ package main
 import (
 	"github.com/KirolZ/SaProject/entity"
 
-	"github.com/KirolZ/SaProject/controller"
+	controller "github.com/KirolZ/SaProject/controller/screening"
+
+	"github.com/KirolZ/SaProject/middlewares"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,12 +16,24 @@ func main() {
 	r := gin.Default()
 	r.Use(CORSMiddleware())
 
+	api := r.Group("")
+	{
+		protected := api.Use(middlewares.Authorizes())
+		{
+			// User Routes
+			protected.GET("/api/GetNurse/:id", controller.GetNurse)
+			protected.GET("/api/Disease", controller.ListDisease)
+			protected.GET("/api/MedicalRecord", controller.ListMedicalRecord)
+			protected.GET("/api/PreloadScreenings", controller.PreloadScreenings)
+
+		}
+	}
+
 	// User Routes
-	r.GET("/api/GetNurse", controller.GetNurse)
-	r.GET("/api/Disease", controller.ListDisease)
-	r.GET("/api/MedicalRecord", controller.ListMedicalRecord)
-	r.GET("/api/PreloadScreenings", controller.PreloadScreenings)
 	r.POST("/api/CreateScreening", controller.CreateScreening)
+
+	// Authentication Routes
+	r.POST("/login", controller.Login)
 
 	//Run the server
 	r.Run()

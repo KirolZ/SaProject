@@ -39,6 +39,7 @@ type MedicalRecord struct {
 
 type Screening struct {
 	gorm.Model
+
 	SaveTime time.Time
 
 	Symptoms        string

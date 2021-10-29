@@ -48,12 +48,17 @@ function Body() {
 
     const [Screening, setScreening] = useState<Partial<ScreeningInterface>>({});
 
+
+
     const [MedicalRecord, setMedicalRecord] = useState<MedicalRecordInterface[]>([]);
           const getMedicalRecord = async() => {
           const apiUrl = "http://localhost:8080/api/MedicalRecord";
           const requestOptions = {
             method: "GET",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              "Content-Type": "application/json",
+            },
           }
 
           fetch(apiUrl, requestOptions)
@@ -67,6 +72,7 @@ function Body() {
               }
             });
         }
+
 
         const [success, setSuccess] = useState(false);
         const [error, setError] = useState(false);
@@ -89,7 +95,10 @@ function Body() {
           const apiUrl = "http://localhost:8080/api/Disease";
           const requestOptions = {
             method: "GET",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              "Content-Type": "application/json",
+            },
           }
 
           fetch(apiUrl, requestOptions)
@@ -107,10 +116,14 @@ function Body() {
         //Nurse
         const [Nurse, setNurse] = useState<NurseInterface>();
           const getNurse = async() => {
-          const apiUrl = "http://localhost:8080/api/GetNurse";
+          const uid = Number(localStorage.getItem("uid"));
+          const apiUrl = `http://localhost:8080/api/GetNurse/${uid}`;
           const requestOptions = {
             method: "GET",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              "Content-Type": "application/json",
+            },
           }
 
           fetch(apiUrl, requestOptions)
@@ -131,7 +144,7 @@ function Body() {
           }, []);
 
 
-
+          // submit
           const submit = () => {
             let data = {
                 MedRecID: Screening.MedRecID,
@@ -166,14 +179,10 @@ function Body() {
           }
           console.log(Screening)
 
-
-
-
-
     return (
 
         <Container className={classes.container} maxWidth="md">
-          <Snackbar open={success} autoHideDuration={6000} onClose={handleClose}>
+          <Snackbar open={success} autoHideDuration={2000} onClose={handleClose} TransitionProps={{onExit: () => {window.location.href="/";}}}>
             <Alert onClose={handleClose} severity="success">
                บันทึกข้อมูลสำเร็จ
             </Alert>
@@ -192,7 +201,7 @@ function Body() {
                             color="primary"
                             gutterBottom
                         >
-                            ใบข้อมูลการซักประวัติ
+                            ใบบันทึกผลการซักประวัติ
                         </Typography>
                         
                     </Box>
@@ -202,7 +211,7 @@ function Body() {
                             color="primary"
 
                             component={RouterLink}
-                            to="/test"   
+                            to="/"   
                             >
 
                             ข้อมูลการซักประวัติ
@@ -369,9 +378,6 @@ function Body() {
                             variant="contained"
                             color="primary"
                             onClick={submit}
-
-                            component={RouterLink}
-                            to="/test"   
                             >
 
                             บันทึก
@@ -381,7 +387,7 @@ function Body() {
                             color="inherit"
 
                             component={RouterLink}
-                            to="/test"   
+                            to="/Nbody"   
                             >
 
                             กลับ

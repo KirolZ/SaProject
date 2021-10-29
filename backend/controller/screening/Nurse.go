@@ -13,10 +13,12 @@ import (
 func GetNurse(c *gin.Context) {
 
 	var user entity.Nurse
+	id := c.Param("id")
 
-	if err := entity.DB().Table("nurses").Where("nurse_email = ?", "nueng@gmail.com").First(&user).Error; err != nil {
+	if err := entity.DB().Raw("SELECT * FROM nurses WHERE id = ?", id).Scan(&user).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
 	c.JSON(http.StatusOK, gin.H{"data": user})
 }

@@ -76,7 +76,7 @@ function PreloadScreenings() {
           <Box>
             <Button
               component={RouterLink}
-              to="/"
+              to="/Nbody"
               variant="contained"
               color="primary"
             >
@@ -100,19 +100,19 @@ function PreloadScreenings() {
                 <TableCell align="center" width="20%">
                   อาการสำคัญ
                 </TableCell>
-                <TableCell align="center" width="10%">
+                <TableCell align="center" width="5%">
                   น้ำหนัก
                 </TableCell>
-                <TableCell align="center" width="10%">
+                <TableCell align="center" width="5%">
                   ส่วนสูง
                 </TableCell>
-                <TableCell align="center" width="10%">
+                <TableCell align="center" width="5%">
                   อุณหภูมิ
                 </TableCell>
-                <TableCell align="center" width="10%">
+                <TableCell align="center" width="5%">
                 PulseRate
                 </TableCell>
-                <TableCell align="center" width="10%">
+                <TableCell align="center" width="5%">
                 RespirationRate
                 </TableCell>
                 <TableCell align="center" width="15%">
